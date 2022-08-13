@@ -4,7 +4,7 @@
 
 In this project, we are using 2 types of roles - ADMIN and USER, for adding more roles check `Role.java`
 
-Learn to Implement this project - [Tutorial - Login Register in Spring Boot](https://studygyaan.com/spring-boot/login-register-example-using-spring-boot)
+Learn to Implement this project: [Tutorial - Login Register in Spring Boot](https://studygyaan.com/spring-boot/login-register-example-using-spring-boot)
 
 application.properties (change database settings)
 ```
@@ -30,4 +30,4 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
 ```
 
-Spring Security *SecurityFilterChain* - [How to Fix WebSecurityConfigurerAdapter Deprecated](https://studygyaan.com/spring-boot/solve-websecurityconfigureradapter-deprecated)
+Spring Security *SecurityFilterChain* : [How to Fix WebSecurityConfigurerAdapter Deprecated](https://studygyaan.com/spring-boot/solve-websecurityconfigureradapter-deprecated)
