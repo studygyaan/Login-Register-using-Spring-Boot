@@ -1,8 +1,10 @@
-Login Register Example For Spring Boot, Thymeleaf, Maven or Gradle, PostgreSQL or MySQL, JPA, Spring Security
+# Login Register Example For Spring Boot,
 
-In this project, we are using 2 types of roles - ADMIN and USER
+### Thymeleaf, Maven or Gradle, PostgreSQL or MySQL, JPA, Spring Security, SecurityFilterChain
 
-Blog - 
+In this project, we are using 2 types of roles - ADMIN and USER, for adding more roles check `Role.java`
+
+Learn to Implement this project - 
 
 application.properties (change database settings)
 ```
@@ -28,4 +30,4 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
 ```
 
-Important Links - Spring Security - [How to Fix WebSecurityConfigurerAdapter Deprecated](https://www.codejava.net/frameworks/spring-boot/fix-websecurityconfigureradapter-deprecated)
+Spring Security *SecurityFilterChain* - [How to Fix WebSecurityConfigurerAdapter Deprecated](https://www.codejava.net/frameworks/spring-boot/fix-websecurityconfigureradapter-deprecated)
