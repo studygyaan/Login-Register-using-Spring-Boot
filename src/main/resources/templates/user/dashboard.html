@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>User Dashboard</title>
+</head>
+<body>
+  <h2>Welcome to User Dashboard</h2>
+  <p>Logged as: <span sec:authentication="name"></span></p>
+  <p>Has role: <span sec:authentication="authorities"></span></p>
+  <div>
+    <p><a th:href="@{/}">Home</a></p>
+    <p><a th:href="@{/logout}">Log out</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <form th:action="@{/register}" th:object="${user}" method="post">
+    <h3>Registration</h3>
+    <input type="text" th:field="*{firstName}" placeholder="First Name" /> <br/><br/>
+    <input type="text" th:field="*{lastName}" placeholder="Last Name" /> <br/><br/>
+    <input type="text" th:field="*{mobile}" placeholder="Mobile Number" /> <br/><br/>
+    <input type="text" th:field="*{email}" placeholder="Email" /> <br/><br/>
+    <input type="password" th:field="*{password}" placeholder="Password" /> <br/><br/>
+    <select th:field="*{role}" required>
+      <option value="">Select</option>
+      <option value="ADMIN">ADMIN</option>
+      <option value="USER">USER</option>
+    </select> <br/><br/>
+    <button type="submit">Register</button> | <a th:href="@{|/login|}" th:text="'Log in'"></a>
+    <span th:utext="${successMessage}"></span>
+    <div th:if="${bindingResult!=null && bindingResult.getAllErrors()!=null}">
+      <ul th:each="data : ${bindingResult.getAllErrors()}">
+        <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
+      </ul>
+    </div>
+</form>
+</body>
+</html>
