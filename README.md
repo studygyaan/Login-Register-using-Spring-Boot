@@ -30,4 +30,4 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
 ```
 
-Spring Security *SecurityFilterChain* - [How to Fix WebSecurityConfigurerAdapter Deprecated](https://www.codejava.net/frameworks/spring-boot/fix-websecurityconfigureradapter-deprecated)
+Spring Security *SecurityFilterChain* - [How to Fix WebSecurityConfigurerAdapter Deprecated](https://studygyaan.com/spring-boot/solve-websecurityconfigureradapter-deprecated)
