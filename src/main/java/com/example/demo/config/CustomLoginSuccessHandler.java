@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Configuration
-public class CustomLoginSucessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     @Override
     protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
     throws IOException {
@@ -28,7 +28,7 @@ public class CustomLoginSucessHandler extends SimpleUrlAuthenticationSuccessHand
     protected String determineTargetUrl(Authentication authentication){
         String url = "/login?error=true";
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        List<String> roles = new ArrayList<String>();
+        List<String> roles = new ArrayList<>();
         for(GrantedAuthority a : authorities){
             roles.add(a.getAuthority());
         }

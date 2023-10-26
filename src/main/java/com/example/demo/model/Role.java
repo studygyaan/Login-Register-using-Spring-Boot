@@ -1,5 +1,9 @@
 package com.example.demo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
 public enum Role {
     USER("User"),
     ADMIN("Admin");
@@ -10,7 +14,4 @@ public enum Role {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
 }
