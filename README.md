@@ -9,7 +9,7 @@ Learn to Implement this project: [Tutorial - Login Register in Spring Boot](http
 application.properties (change database settings)
 ```
 #-------------------- server properties ---------------
-server.port=8080
+server.port='Your port of choice'
 server.error.include-message=always
 
 #--------------------- Logging ------------------
@@ -19,14 +19,14 @@ logging.level.org.springframework.web=DEBUG
 logging.level.org.hibernate=ERROR
 
 #--------------------- DB Connection ------------------
-spring.datasource.url=jdbc:postgresql://localhost:5432/demo
-spring.datasource.username=demo
-spring.datasource.password=password
+spring.datasource.url=jdbc:'your sql provider'://localhost:5432/demo
+spring.datasource.username='username for your database'
+spring.datasource.password='password to your database'
 
 #--------------------JPA-ORM Properties-----------------
 spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.'Your SQL dialect option'
 spring.jpa.properties.hibernate.format_sql=true
 ```
 

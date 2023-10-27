@@ -1,28 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" >
   <title>Login</title>
 </head>
 <body>
-  <form th:action="@{/register}" th:object="${user}" method="post">
-    <h3>Registration</h3>
-    <input type="text" th:field="*{firstName}" placeholder="First Name" /> <br/><br/>
-    <input type="text" th:field="*{lastName}" placeholder="Last Name" /> <br/><br/>
-    <input type="text" th:field="*{mobile}" placeholder="Mobile Number" /> <br/><br/>
-    <input type="text" th:field="*{email}" placeholder="Email" /> <br/><br/>
-    <input type="password" th:field="*{password}" placeholder="Password" /> <br/><br/>
-    <select th:field="*{role}" required>
-      <option value="">Select</option>
-      <option value="ADMIN">ADMIN</option>
-      <option value="USER">USER</option>
-    </select> <br/><br/>
-    <button type="submit">Register</button> | <a th:href="@{|/login|}" th:text="'Log in'"></a>
-    <span th:utext="${successMessage}"></span>
-    <div th:if="${bindingResult!=null && bindingResult.getAllErrors()!=null}">
-      <ul th:each="data : ${bindingResult.getAllErrors()}">
-        <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">Home Page</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+        </li>
       </ul>
     </div>
-</form>
+  </div>
+</nav>
+<br /><br />
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="text-center">Register</h2>
+          </div>
+          <div class="card-body">
+            <form th:action="@{/register}" th:object="${user}" method="post" role="form">
+              <div class="form-group mb-3">
+                <label for="firstName">First Name</label>
+                <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First Name" />
+              </div>
+              <div class="form-group mb-3">
+                <label for="lastName">Last Name</label>
+                <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last Name" />
+              </div>
+              <div class="form-group mb-3">
+                <label for="mobile">Mobile</label>
+                <input type="text" th:field="*{mobile}" class="form-control" id="mobile" placeholder="Mobile Number" />
+              </div>
+              <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input type="text" th:field="*{email}" id="email" class="form-control" placeholder="Email" />
+              </div>
+              <div class="form-group mb-3">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" th:field="*{password}" placeholder="Password" />
+              </div>
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="role">Role</label>
+                <select class="form-select" th:field="*{role}" id="role" required>
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="USER">USER</option>
+                </select>
+              </div>
+              <div class="form-group mb-3 d-flex">
+                <button class="btn btn-primary me-3 " type="submit">Register</button><a class="btn btn-outline-secondary" th:href="@{/login}" th:text="'Log in'" role="button">Log in</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 </html>

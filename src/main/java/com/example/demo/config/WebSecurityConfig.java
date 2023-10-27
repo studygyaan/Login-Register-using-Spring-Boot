@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.service.UserServiceImpl;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,16 +18,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class WebSecurityConfig {
 
-    @Autowired
-    private CustomLoginSucessHandler sucessHandler;
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new UserServiceImpl();
-    }
-
+    private CustomLoginSuccessHandler successHandler;
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -38,30 +33,20 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-
-        return authProvider;
-    }
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
                 http.authorizeRequests()
                 // URL matching for accessibility
-                .antMatchers("/", "/login", "/register").permitAll()
+                .antMatchers("/", "/auth/login", "/auth/register").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/account/**").hasAnyAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 // form login
                 .csrf().disable().formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
-                .successHandler(sucessHandler)
+                .loginPage("/auth/login")
+                .failureUrl("/auth/login?error=true")
+                .successHandler(successHandler)
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
@@ -72,10 +57,6 @@ public class WebSecurityConfig {
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied");
-
-                http.authenticationProvider(authenticationProvider());
-                http.headers().frameOptions().sameOrigin();
-
                 return http.build();
     }
 
