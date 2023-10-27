@@ -21,8 +21,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @AllArgsConstructor
 public class WebSecurityConfig {
 
-    UserDetailsService userDetailsService;
-
     private CustomLoginSuccessHandler successHandler;
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -35,29 +33,19 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-
-        return authProvider;
-    }
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
                 http.authorizeRequests()
                 // URL matching for accessibility
-                .antMatchers("/", "/login", "/register").permitAll()
+                .antMatchers("/", "/auth/login", "/auth/register").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/account/**").hasAnyAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 // form login
                 .csrf().disable().formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
+                .loginPage("/auth/login")
+                .failureUrl("/auth/login?error=true")
                 .successHandler(successHandler)
                 .usernameParameter("email")
                 .passwordParameter("password")
@@ -69,10 +57,6 @@ public class WebSecurityConfig {
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied");
-
-                http.authenticationProvider(authenticationProvider());
-                http.headers().frameOptions().sameOrigin();
-
                 return http.build();
     }
 
